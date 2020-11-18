@@ -1,0 +1,267 @@
+import { StyleSheet, Dimensions } from 'react-native';
+export default StyleSheet.create({
+    row: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderColor: '#DCDCDC',
+        backgroundColor: '#fff',
+        borderBottomWidth: 1,
+        padding: 10,
+    },
+    fl_ph: {
+        // width: 68,
+        // height: 68,
+        // borderRadius: 100,
+        // elevation:4,
+        // borderWidth:4,
+        // borderColor:'white',
+        // backgroundColor:'white'
+    },
+    pic: {
+        borderRadius: 100,
+        width: 60,
+        height: 60,
+    },
+    favHolder: {
+        position:'absolute',
+        right:-10,
+        top:-7,
+        height: 24,
+        width: 24,
+        zIndex:1,
+        backgroundColor:'white',
+        padding:4,
+        borderRadius:100,
+    },
+    icon:{
+        top:1,
+        height: 16,
+        width: 16,
+    },
+    nameContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: Dimensions.get('window').width - 80,
+    },
+    nameTxt: {
+        marginLeft: 15,
+        fontWeight: '600',
+        color: 'rgba(0,0,0,.8)',
+        letterSpacing:-0,
+        // color: '#156874',
+        fontSize: 16,
+        // fontWeight:'700',
+        // fontFamily: 'ScriptMTBold',
+        fontFamily:'ufonts.com_century-gothic',
+        width: Dimensions.get('window').width - (60 + 15 + 20 + 30 + 60),
+    },
+    mblTxt: {
+        fontWeight: '200',
+        color: '#fff',
+        fontSize: 12,
+        paddingTop:5,
+        paddingBottom:5,
+        paddingLeft:10,
+        paddingRight:10,
+        backgroundColor:'#1b9b3b',
+        borderRadius:3,
+        top:0,
+        fontFamily:'ufonts.com_century-gothic'
+    },
+    msgContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    msgTxt: {
+        fontWeight: '400',
+        color: 'rgba(0,0,0,.7)',
+        fontSize: 14,
+        marginLeft: 15,
+        fontStyle:'italic',
+        width: Dimensions.get('window').width - (60 + 15 + 20),
+    },
+
+    // MODAL
+    popupOverlay: {
+        backgroundColor: "rgba(0,0,0,.5)",
+        flex: 1,
+    },
+    popup: {
+        backgroundColor: 'white',
+        marginHorizontal: 10,
+        marginVertical: 10,
+        borderRadius: 3,
+        overflow:'hidden'
+    },
+    popupContent: {
+        height: Dimensions.get('window').height - 90,
+    },
+    modalInfo:{
+        alignItems:'center',
+        justifyContent:'center',
+    },
+    header:{
+        height: 200,
+        width: Dimensions.get('window').width - 20,
+        position:'relative',
+    },
+    pp_holder: {
+        width: 150,
+        height: 150,
+        borderRadius: 100,
+        alignSelf:'center',
+        alignItems:'center',
+        position: 'relative',
+        top: -75,
+        elevation:4,
+        marginBottom:-55,
+        backgroundColor:'white'
+    },
+    avatar: {
+        width: 150,
+        height: 150,
+        borderWidth: 4,
+        borderColor: "white",
+        borderRadius: 100,
+        alignSelf:'center',
+        alignItems:'center',
+        position: 'absolute',
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 1,
+        shadowRadius: 2.22,
+    },
+    body:{
+        marginTop:0,
+    },
+    name:{
+        fontSize:25,
+        color: "#156874",
+        fontWeight: "600",
+        textAlign: 'center',
+        // fontFamily: 'ScriptMTBold'
+        fontFamily: 'ufonts.com_century-gothic',
+    },
+    info:{
+        fontSize:16,
+        color: "#696969",
+        marginTop:10,
+        textAlign: 'center',
+        fontStyle:'italic',
+        // fontFamily: 'SelfDestructButtonBB_reg'
+        // fontFamily: 'ufonts.com_century-gothic',
+    },
+    card:{
+        backgroundColor: "#FFFFFF",
+        borderRadius:3,
+        padding:15,
+        marginTop:10,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.22,
+        shadowRadius: 2.22,
+        elevation: 2,
+        width: Dimensions.get('window').width - 60,
+        marginBottom: 24,
+    },
+    cardTittle:{
+        color:"#000",
+        fontSize:16,
+        marginBottom:5,
+        textAlign:'center',
+        fontFamily: 'ufonts.com_century-gothic',
+        borderBottomColor: 'rgba(0,0,0,.3)',
+        borderBottomWidth: 2,
+        paddingBottom: 10
+    },
+    details:{
+        color:"#808080",
+        fontSize: 15,
+        fontFamily: 'ufonts.com_century-gothic',
+        top:10,
+    },
+    perDet: {
+        fontSize: 14,
+        left:40,
+        top:-22,
+        width: Dimensions.get('window').width - 170,
+    },
+    popupButtons: {
+        flexDirection: 'row',
+        borderTopWidth: 2,
+        borderColor: "rgba(0,0,0,0.05)",
+        justifyContent:'center',
+    },
+    btnClose:{
+        height:45,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: Dimensions.get('window').width - 60,
+        fontWeight:'900',
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.22,
+        shadowRadius: 2.22,
+        elevation: 1,
+    },
+    buttonContainer: {
+        marginBottom:10,
+        height:45,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom:20,
+        borderRadius:3,
+        backgroundColor: "#1b9b3b",
+        shadowColor: "#fff",
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.22,
+        shadowRadius: 2.22,
+        elevation: 1,
+    },
+    appbar: {
+        alignItems: 'center', 
+        justifyContent:'space-between', 
+        height: 50, 
+        paddingVertical: 0, 
+        paddingHorizontal: 15,
+        backgroundColor: '#fff',
+        elevation: 1,
+    },
+    onJobAppbar: {
+        alignItems: 'center', 
+        justifyContent:'space-between', 
+        height: 50, 
+        paddingVertical: 0, 
+        paddingHorizontal: 15,
+        backgroundColor: '#156874',
+        elevation: 1,
+    },
+    leftAction: {
+        backgroundColor:'#388e3c',
+        justifyContent:'center',
+        flex:1
+    },
+    actionText: {
+        color:'#fff',
+        fontWeight:'600',
+        padding:20
+    },
+    rightAction: {
+        backgroundColor:'#dd2c00',
+        justifyContent:'center',
+        // flex:1
+        alignItems:'flex-end'
+    },
+});
