@@ -62,6 +62,7 @@
 												<thead>
 													<tr>
 														<th>No</th>
+														<th>Username</th>
 														<th>Nama staff</th>
 														<th>Nama klinik</th>
 														<th>Action</th>
@@ -74,12 +75,14 @@
 													{
 														$no++;
 														$id_user		= $row['id_user'];
+														$username		= $row['username'];
 														$nama_user	    = $row['nama_user'];
 														$nama_klinik	= $row['nama_klinik'];
 														
 														?>
 														<tr>
 															<td><?php echo $no; ?></td>
+															<td><?php echo set_data($username); ?></td>
 															<td><?php echo set_data($nama_klinik); ?></td>
 															<td><?php echo set_data($nama_user); ?></td>
 															<td>

@@ -8,12 +8,15 @@ import {
     Alert,
     Modal,
     ScrollView,
+    TextInput
 } from 'react-native';
-import SwipeableRating from 'react-native-swipeable-rating';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Appbar } from 'react-native-paper';
 import Loading from 'react-native-whc-loading';
 import { logedUser }  from "../../../auth";
 import { connect } from 'react-redux';
+import moment from 'moment'
 import styles from '../../../styles/EmployeeAllList';
 import { LI_setGlobalState } from '../../../redux/actions/LogedIn';
 
@@ -32,6 +35,12 @@ class EmployeeAllList extends Component {
             totalData    : 0,
             dataLoading  : true,
             connection   : true,
+
+            date     : new Date(),
+            mode     : 'date',
+            show     : false,
+            tanggal  : '',
+            waktu   : '',
         };
     }
 
@@ -127,6 +136,8 @@ class EmployeeAllList extends Component {
             body: JSON.stringify({
                 id_dokter   : id_dokter,
                 id_pasien   : id_pasien,
+                tanggal     : this.state.tanggal,
+                waktu       : this.state.waktu
             })
         })
         .then(r => r.json())
@@ -163,6 +174,44 @@ class EmployeeAllList extends Component {
             );
             console.log(e.message)
         });
+    }
+ 
+    // setDate = (event, date) => {
+    //     let go   = date || '';
+    //     date = date || this.state.date;
+    
+    //     this.setState({
+    //         show: Platform.OS === 'ios' ? true : false,
+    //         date,
+    //     });
+        
+    //     date = go ? moment.utc(date).format('MM/DD/YYYY') : '';
+    //     this.setState({ tanggal: date});
+    // }
+
+    setDate = (event, selectedDate) => {
+        let go   = selectedDate || '';
+        selectedDate = selectedDate || this.state.date;
+        selectedDate = go ? moment.utc(selectedDate).format('MM/DD/YYYY') : '';
+        this.setState({
+            show: Platform.OS === 'ios' ? true : false,
+            tanggal: selectedDate
+        });
+    };
+  
+    show = mode => {
+        this.setState({
+            show: true,
+            mode,
+        });
+    }
+  
+    datepicker = () => {
+        this.show('date');
+    }
+  
+    timepicker = () => {
+        this.show('time');
     }
 
     _isBooked = (item, id_user, profile = false) => {
@@ -201,7 +250,7 @@ class EmployeeAllList extends Component {
     renderItem = ({item}) => {
 
         const { username, id_user } = this.state.storedData;
-        const { userSelected, modalVisible } = this.state;
+        const { userSelected, modalVisible, show, mode, tanggal, date, waktu } = this.state;
         
         if(username && username !== '')
         {
@@ -219,6 +268,9 @@ class EmployeeAllList extends Component {
                                 <View style={[styles.msgContainer, {top:0}]}>
                                     <Text style={styles.msgTxt}>{item.spesialis ?? '-'} / {item.sub_spesialis ?? '-'}</Text>
                                 </View>
+                                <View style={[styles.msgContainer, {top:0}]}>
+                                    <Text style={styles.msgTxt}>Senin - Jumat : {item.jadwal_jam ?? '-'}</Text>
+                                </View>
                                 {this._isBooked(item, id_user)}
                             </View>
                         </View>
@@ -234,6 +286,7 @@ class EmployeeAllList extends Component {
                         <View style={styles.popupOverlay}>
                             <View style={styles.popup}>
                                 <View style={styles.popupContent}>
+                                    <KeyboardAwareScrollView resetScrollToCoords = {{ x: 0, y: 0 }} contentContainerStyle = {styles.MainContainer}>
                                     <ScrollView contentContainerStyle={styles.modalInfo}>
                                         <View style={[styles.body, {marginTop:50}]}>
                                             <Text style={styles.name}>{userSelected.nama_dokter}</Text>
@@ -254,10 +307,48 @@ class EmployeeAllList extends Component {
                                                     <global.fontAwesome5 name="angle-right" size={23} color={'#1975a5'} style={styles.sicon}/>
                                                     <Text style={[styles.perDet, {}]}>{userSelected.spesialis} / {userSelected.sub_spesialis}</Text>
                                                 </View>
-                                            </View>                                            
+                                            </View>
+                                            
+                                            <View style={styles.card}>
+                                                <Text style={styles.cardTittle}>Detail booking</Text>
+                
+                                                <View>
+                                                    <TextInput
+                                                        placeholder     = 'Tanggal resevasi'
+                                                        onTouchStart    = {this.datepicker}
+                                                        onFocus         = {this.datepicker}
+                                                        autoCapitalize  = {'none'}
+                                                        
+                                                        value   = { mode === 'date' && tanggal ? moment.utc(date).format('MM/DD/YYYY') : '' }
+                                                        style   = {styles.TextInputStyleClass}
+                                                        ref     = 'birthDay'
+                                                    />
+                                                </View>
+
+                                                { show && 
+                                                    <DateTimePicker 
+                                                        value={date}
+                                                        mode={mode}
+                                                        is24Hour={true}
+                                                        display="default"
+                                                        onChange={this.setDate}
+                                                    />
+                                                }
+                
+                                                <View>
+                                                    <TextInput
+                                                        placeholder     = 'Waktu reservasi'
+                                                        onChangeText    = {(text) => this.setState({waktu: text})}  
+                                                        
+                                                        value   = { waktu ?? ''}
+                                                        style   = {styles.TextInputStyleClass}
+                                                    />
+                                                </View>
+                                            </View> 
                                             {this._isBooked(userSelected, id_user, true)}
                                         </View>
                                     </ScrollView>
+                                    </KeyboardAwareScrollView>
                                 </View>
                                 <View style={styles.popupButtons}>
                                     <TouchableOpacity onPress={() => {this._hideProfileModal(false) }} style={styles.btnClose}>

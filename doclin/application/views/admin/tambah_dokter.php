@@ -99,7 +99,6 @@
 												<label class="col-xl-2 col-lg-2 col-form-label">Spesialis</label>
 												<div class="col-xl-10 col-lg-10">
 													<input class="form-control m-input" type="text" autocomplete="off" name="spesialis" placeholder="spesialis">
-													<input type="hidden" name="id_dokter" value="<?php echo $dokter['id_dokter']; ?>">
 													<div class="m--font-danger ml_input_eh set_error" id="spesialis"></div>
 												</div>
 											</div>
@@ -108,7 +107,6 @@
 												<label class="col-xl-2 col-lg-2 col-form-label">Sub spesialis</label>
 												<div class="col-xl-10 col-lg-10">
 													<input class="form-control m-input" type="text" autocomplete="off" name="sub_spesialis" placeholder="sub spesialis">
-													<input type="hidden" name="id_dokter" value="<?php echo $dokter['id_dokter']; ?>">
 													<div class="m--font-danger ml_input_eh set_error" id="sub_spesialis"></div>
 												</div>
 											</div>
@@ -123,6 +121,18 @@
 														<option value="S3">S3</option>
 													</select>
 													<div class="m--font-danger ml_input_eh set_error" id="pendidikan"></div>
+												</div>
+											</div>
+
+											<div class="form-group m-form__group row">
+												<label class="col-xl-2 col-lg-2 col-form-label">Jadwal senin - jumat</label>
+												<div class="col-xl-5 col-lg-5">
+													<input class="form-control m-input" type="time" autocomplete="off" name="jam_m" placeholder="jam mulai">
+													<div class="m--font-danger ml_input_eh set_error" id="jam_m"></div>
+												</div>
+												<div class="col-xl-5 col-lg-5">
+													<input class="form-control m-input" type="time" autocomplete="off" name="jam_s" placeholder="jam selesai">
+													<div class="m--font-danger ml_input_eh set_error" id="jam_s"></div>
 												</div>
 											</div>
 

@@ -43,7 +43,13 @@ class EmployeeAllList extends Component {
             this.setState({ storedData: res });
             this._makeRemoteRequest();
             setInterval(() => {
-                if(this.props.logedIn.LI_loadAntrian) {
+                if(this.props.logedIn.LI_totalNotif !== this.props.logedIn.LI_FL_TotNotif)
+                {
+                    this._makeRemoteRequest();
+                    this.props.LI_setGlobalState(this.props.logedIn.LI_totalNotif, 'LI_FL_TotNotif');
+                }
+                else if(this.props.logedIn.LI_loadAntrian)
+                {
                     this.props.LI_setGlobalState(false, 'LI_loadAntrian');
                     this._makeRemoteRequest();
                 }

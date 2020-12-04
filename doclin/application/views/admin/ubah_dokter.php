@@ -128,6 +128,18 @@
 											</div>
 
 											<div class="form-group m-form__group row">
+												<label class="col-xl-2 col-lg-2 col-form-label">Jadwal senin - jumat</label>
+												<div class="col-xl-5 col-lg-5">
+													<input class="form-control m-input" type="time" autocomplete="off" name="jam_m" value="<?php echo explode(' - ', $dokter->jadwal_jam)[0]; ?>">
+													<div class="m--font-danger ml_input_eh set_error" id="jam_m"></div>
+												</div>
+												<div class="col-xl-5 col-lg-5">
+													<input class="form-control m-input" type="time" autocomplete="off" name="jam_s" value="<?php echo explode(' - ', $dokter->jadwal_jam)[1]; ?>">
+													<div class="m--font-danger ml_input_eh set_error" id="jam_s"></div>
+												</div>
+											</div>
+
+											<div class="form-group m-form__group row">
 												<div class="col-xl-2 col-lg-2"></div>
 												<div class="col-xl-10 col-lg-10 ca-btn">
 													<button class="btn btn-success m-btn m-btn--air m-btn--custom">

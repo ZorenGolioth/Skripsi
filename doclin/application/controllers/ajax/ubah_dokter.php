@@ -25,7 +25,9 @@
                                 tanggal_lahir:Tanggal lahir harus diisi.,
                                 spesialis:Spesialis harus diisi.,
                                 sub_spesialis:Sub spesialis harus diisi.,
-                                pendidikan:Pendidikan harus dipilih.');
+                                pendidikan:Pendidikan harus dipilih.,
+                                jam_m:Jam mulai harus dipilih.,
+                                jam_s:Jam selesai harus dipilih.');
             
             if($this->form->validate())
             {
@@ -36,6 +38,9 @@
                 $spesialis    = $this->input->post('spesialis');
                 $sub_spesialis    = $this->input->post('sub_spesialis');
                 $pendidikan    = $this->input->post('pendidikan');
+                $jam_m    = $this->input->post('jam_m');
+                $jam_s    = $this->input->post('jam_s');
+                $jadwal = $jam_m.' - '.$jam_s;
 
                 # update
                 $this->model->set('nama_dokter', $nama_dokter)
@@ -44,6 +49,7 @@
                             ->set('spesialis', $spesialis)
                             ->set('sub_spesialis', $sub_spesialis)
                             ->set('pendidikan', $pendidikan)
+                            ->set('jadwal_jam', $jadwal)
                             ->where('id_dokter', $id_dokter)
                             ->update('dokter');
                 

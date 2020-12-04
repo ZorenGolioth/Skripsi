@@ -68,6 +68,7 @@
 														<th>Spesialis</th>
 														<th>Sub spesialis</th>
 														<th>Pendidikan</th>
+														<th>Jadwal senin - jumat</th>
 														<th>Action</th>
 													</tr>
 												</thead>
@@ -84,6 +85,7 @@
 														$spesialis	= $row['spesialis'];
 														$sub_spesialis	= $row['sub_spesialis'];
 														$pendidikan	= $row['pendidikan'];
+														$jadwal_jam	= $row['jadwal_jam'];
 														
 														?>
 														<tr>
@@ -98,6 +100,7 @@
 															<td><?php echo set_data($spesialis); ?></td>
 															<td><?php echo set_data($sub_spesialis); ?></td>
 															<td><?php echo set_data($pendidikan); ?></td>
+															<td><?php echo set_data($jadwal_jam); ?></td>
 															<td>
 																<a href="admin/delete-dokter/<?php echo $id_dokter; ?>" class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill">
 																	<i class="m-menu__link-icon flaticon-delete-1"></i>

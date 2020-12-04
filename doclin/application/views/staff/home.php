@@ -64,6 +64,8 @@
 														<th>No</th>
 														<th>Nama dokter</th>
 														<th>Nama pasien</th>
+														<th>Tanggal</th>
+														<th>Waktu</th>
 														<th>Status</th>
 														<th>Action</th>
 													</tr>
@@ -78,6 +80,8 @@
 														$nama_dokter	= $row['nama_dokter'];
 														$nama_pasien	= $row['nama_pasien'];
 														$terima			= $row['terima'];
+														$tanggal_reservasi	= $row['tanggal_reservasi'];
+														$waktu_reservasi	= $row['waktu_reservasi'];
 														
 														?>
 														<tr>
@@ -88,6 +92,8 @@
 																</a>
 															</td>
 															<td><?php echo $nama_pasien; ?></td>
+															<td><?php echo set_data($tanggal_reservasi); ?></td>
+															<td><?php echo set_data($waktu_reservasi); ?></td>
 															<td>
 																<?php if($terima === '0'){ ?>
 																	<span class="m--font-danger">Belum</span>

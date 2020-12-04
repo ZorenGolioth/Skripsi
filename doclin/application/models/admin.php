@@ -66,7 +66,7 @@
 
         public function staff_klinik($type = '')
         {
-            return $this->select('u.id_user, u.nama_user, k.nama_klinik')
+            return $this->select('u.id_user, u.nama_user, u.username, k.nama_klinik')
                         ->from('user u, klinik k')
                         ->where('u.id_klinik', 'k.id_klinik', 'at')
                         ->get($type);
@@ -81,7 +81,7 @@
 
         public function reservasi($id = '', $type = '')
         {
-            return $this->select('r.id_reservasi, r.terima, d.nama_dokter, p.nama_pasien')
+            return $this->select('r.id_reservasi, r.terima, r.tanggal_reservasi, r.waktu_reservasi, d.nama_dokter, p.nama_pasien')
                         ->from('reservasi r, dokter d, data_pasien p')
                         ->where('r.id_dokter', 'd.id_dokter', 'at')
                         ->and('r.id_pasien', 'p.id_user', 'at')

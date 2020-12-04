@@ -4,7 +4,7 @@ import { createStackNavigator } from 'react-navigation';
 
 /* LOGIN */
 import Login                from "../views/Login/Login";
-import ForgotPassword       from "../views/Login/forgotPasswordView";
+// import ForgotPassword       from "../views/Login/forgotPasswordView";
 
 /* EMPLOYEE SIGN UP */
 import Data_Pasien    from "../views/Signup/Pasien/Data_Pasien";
@@ -22,25 +22,25 @@ const Welcome = createStackNavigator(
                 header: null,
             }
         },
-        ForgotPassword: {
-            screen: ForgotPassword,
-            navigationOptions: {
-                headerTitleStyle: {alignSelf: 'center', fontSize:16, color:'white', left: -20, fontFamily:'centuryGothic'},
-                headerRight: (
-                    <Image
-                        source={require('../assets/logo/e.png')}
-                        style={{ width:120, height:30, right:20, position:'absolute' }}
-                    />
-                ),
-                headerStyle: {
-                    marginTop:24,
-                    elevation:5,
-                    backgroundColor:'#156874',
-                    color:'white'
-                },
-                headerTintColor: 'white',
-            }
-        },
+        // ForgotPassword: {
+        //     screen: ForgotPassword,
+        //     navigationOptions: {
+        //         headerTitleStyle: {alignSelf: 'center', fontSize:16, color:'white', left: -20, fontFamily:'centuryGothic'},
+        //         headerRight: (
+        //             <Image
+        //                 source={require('../assets/logo/e.png')}
+        //                 style={{ width:120, height:30, right:20, position:'absolute' }}
+        //             />
+        //         ),
+        //         headerStyle: {
+        //             marginTop:24,
+        //             elevation:5,
+        //             backgroundColor:'#156874',
+        //             color:'white'
+        //         },
+        //         headerTintColor: 'white',
+        //     }
+        // },
 
         /* EMPLOYEE */
         Data_Pasien: {

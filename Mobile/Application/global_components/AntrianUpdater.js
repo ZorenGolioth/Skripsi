@@ -4,42 +4,56 @@ import { connect } from 'react-redux';
 import { logedUser }  from "../auth";
 import { LI_setGlobalState } from '../redux/actions/LogedIn';
 
-class NotificationUpdater extends Component {
+class AntrianUpdater extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { username: '' };
+        this.state = {
+            id_user : '',
+        };
     }
 
     componentDidMount() {
         logedUser().then(res => {
-            this.setState({ username: res.username });
-            this._renderNotification();
+            this.setState({
+                id_user   : res.id_user
+            });
+
+            this._renderNotification(true);
+
             setInterval(() => {
-                if(this.props.logedIn.LI_loadOnJobUpdater) {
-                    this.props.LI_setGlobalState(false, 'LI_loadOnJobUpdater');
-                    this._renderNotification();
+                this._renderNotification();
+            }, 5000);
+
+            setInterval(() => {
+                if(this.props.logedIn.LI_totalNotif !== this.props.logedIn.LI_FL_TotNotif)
+                {
+                    console.log(this.props.logedIn.LI_totalNotif+' '+this.props.logedIn.LI_FL_TotNotif)
+                    this._renderNotification(true);
                 }
             }, 1);
         });
     }
 
-    _renderNotification = () => {
-        fetch(global.url+'notificationUpdater/onJob', {
+    _renderNotification = (fl = false) => {
+        fetch(global.url+'API/booking/not_done', {
             method  : 'POST',
             headers : { Accept: 'application/json', 'Content-Type': 'application/json', },
-            body    : JSON.stringify({ username  : this.state.username })
+            body    : JSON.stringify({ id_user  : this.state.id_user })
         })
         .then(r => r.json())
-        .then(r => { this.props.LI_setGlobalState(r, 'LI_totalOnJob') })
+        .then(r => {
+            this.props.LI_setGlobalState(r, 'LI_totalNotif');
+            if(fl) this.props.LI_setGlobalState(r, 'LI_FL_TotNotif');
+        })
         .catch(e => {});
     }
 
     render() {
-        if(parseInt(this.props.logedIn.LI_totalOnJob) > 0)
+        if(this.props.logedIn.LI_totalNotif > 0)
         {
             return (
-                <Text style={ styles.notification }>{this.props.logedIn.LI_totalOnJob}</Text>
+                <Text style={ styles.notification }>{this.props.logedIn.LI_totalNotif}</Text>
             );
         }
         else
@@ -54,7 +68,8 @@ class NotificationUpdater extends Component {
 const styles = StyleSheet.create({
     notification : {
         position:'absolute',
-        left:27,
+        top:-5,
+        left:13,
         fontSize:8,
         backgroundColor: '#ec443e',
         color:'white',
@@ -73,4 +88,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { LI_setGlobalState })(NotificationUpdater);
+export default connect(mapStateToProps, { LI_setGlobalState })(AntrianUpdater);

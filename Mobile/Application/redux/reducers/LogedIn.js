@@ -15,8 +15,11 @@ const initialState = {
     LI_firstLogin   : false,
 
     // data loader
+    LI_totalNotif   : 0,
+    LI_FL_TotNotif  : 0,
     LI_loadAntrian  : false,
     LI_loadDokter   : false,
+    LI_notUpdater   : true,
     // LI_loadAllEmployee      : false,
     // LI_loadCategoryEmployee : false,
     // LI_loadOnJobEmployee    : false,

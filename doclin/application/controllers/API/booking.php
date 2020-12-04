@@ -66,13 +66,25 @@
         {
             $id_dokter = $this->input->post('id_dokter', true);
             $id_pasien = $this->input->post('id_pasien', true);
+            $tanggal = $this->input->post('tanggal', true);
+            $tanggal = explode(' ', $tanggal)[0];
+            $waktu = $this->input->post('waktu', true);
             
-            $this->model->data('id_dokter', $id_dokter)
-                        ->data('id_pasien', $id_pasien)
-                        ->insert('reservasi');
+            if(!empty($tanggal) && !empty($waktu))
+            {
+                $this->model->data('id_dokter', $id_dokter)
+                            ->data('id_pasien', $id_pasien)
+                            ->data('tanggal_reservasi', $tanggal)
+                            ->data('waktu_reservasi', $waktu)
+                            ->insert('reservasi');
 
-            $this->model->close_conn();
-            echo json_encode('|berhasil!');
+                $this->model->close_conn();
+                echo json_encode('|berhasil!');
+            }
+            else
+            {
+                echo json_encode('Belum memilih tanggal atau waktu!');
+            }
         }
 
         public function batal()

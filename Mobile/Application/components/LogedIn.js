@@ -10,6 +10,7 @@ import { LI_setState } from '../redux/actions/LogedIn';
 import HomeView     from "./Home";
 import ProfileView  from "../views/Logedin/profileView";
 import Antrian      from "../views/Logedin/Antrian";
+import AntrianUpdater   from "../global_components/AntrianUpdater";
 
 const EmployeeComponents = createBottomTabNavigator(
     {
@@ -32,6 +33,7 @@ const EmployeeComponents = createBottomTabNavigator(
                     return (
                         <View>
                             <global.ionicon name={'ios-list'} size={33} color={(focused) ? '#156874' : '#abbdc7'} />
+                            <AntrianUpdater/>
                         </View>
                     );
                 }

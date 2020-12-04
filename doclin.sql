@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 16, 2020 at 03:31 AM
+-- Generation Time: Dec 04, 2020 at 12:56 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -60,16 +60,20 @@ CREATE TABLE `dokter` (
   `tanggal_lahir` varchar(20) DEFAULT NULL,
   `spesialis` varchar(50) DEFAULT NULL,
   `sub_spesialis` varchar(50) DEFAULT NULL,
-  `pendidikan` varchar(3) DEFAULT NULL
+  `pendidikan` varchar(3) DEFAULT NULL,
+  `jadwal_jam` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `dokter`
 --
 
-INSERT INTO `dokter` (`id_dokter`, `nama_dokter`, `jenis_kelamin`, `tanggal_lahir`, `spesialis`, `sub_spesialis`, `pendidikan`) VALUES
-(2, 'Dr. Arnold Gomes', 'Laki - Laki', '2020-11-11', 'jantung', 'hati', 'S2'),
-(3, 'Dr. James', 'Laki - Laki', '2020-11-17', 'Ahli dalam', 'paru -paru', 'S2');
+INSERT INTO `dokter` (`id_dokter`, `nama_dokter`, `jenis_kelamin`, `tanggal_lahir`, `spesialis`, `sub_spesialis`, `pendidikan`, `jadwal_jam`) VALUES
+(2, 'Dr. Arnold Gomes', 'Laki - Laki', '2020-11-11', 'jantung', 'hati', 'S2', '07:32 - 17:32'),
+(3, 'Dr. James', 'Laki - Laki', '2020-11-17', 'Ahli dalam', 'paru -paru', 'S2', NULL),
+(4, 'Aaa', 'Laki - Laki', '2020-11-18', 'adfs', 'asdfa', 'S1', NULL),
+(5, 'Bbb', 'Perempuan', '2020-11-19', 'asdf', 'asdfas', 'S1', NULL),
+(6, 'Www', 'Laki - Laki', '2020-11-18', 'sdfa', 'asdf', 'S1', NULL);
 
 -- --------------------------------------------------------
 
@@ -89,7 +93,9 @@ CREATE TABLE `dokter_klinik` (
 
 INSERT INTO `dokter_klinik` (`id_dokter_klinik`, `id_klinik`, `id_dokter`) VALUES
 (3, 1, 2),
-(5, 6, 3);
+(5, 6, 3),
+(9, 6, 4),
+(10, 6, 6);
 
 -- --------------------------------------------------------
 
@@ -125,21 +131,12 @@ CREATE TABLE `reservasi` (
   `id_reservasi` int(11) NOT NULL,
   `id_dokter` int(11) NOT NULL,
   `id_pasien` int(11) NOT NULL,
-  `tanggal_reservasi` date DEFAULT NULL,
-  `waktu_reservasi` time DEFAULT NULL,
+  `tanggal_reservasi` varchar(10) DEFAULT NULL,
+  `waktu_reservasi` varchar(25) DEFAULT NULL,
   `done` varchar(1) NOT NULL DEFAULT '0',
   `terima` varchar(1) NOT NULL DEFAULT '0',
   `no_antrian` varchar(3) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `reservasi`
---
-
-INSERT INTO `reservasi` (`id_reservasi`, `id_dokter`, `id_pasien`, `tanggal_reservasi`, `waktu_reservasi`, `done`, `terima`, `no_antrian`) VALUES
-(15, 2, 12, '2020-11-12', NULL, '1', '1', '1'),
-(16, 2, 13, '2020-11-12', NULL, '0', '1', '2'),
-(17, 2, 14, '2020-11-12', NULL, '0', '1', '3');
 
 -- --------------------------------------------------------
 
@@ -168,7 +165,7 @@ INSERT INTO `user` (`id_user`, `nama_user`, `tipe_user`, `username`, `email`, `p
 (8, 'Staff Medika', 'Staff', 'staff_medika', NULL, 'f0b00d7ccb8656a3bbfbf52afc7dc3f73b9333fc', 7),
 (9, 'Staff Husada', 'Staff', 'staff_husada', NULL, '0c1a77bde15b68207358b691930e56449d166f2c', 8),
 (11, 'Staff Madani', 'Staff', 'staff_madani', NULL, '62d60fa65a4726266ed3007553b2412468e4e711', 9),
-(12, NULL, 'Pasien', 'jack', 'jack@mail.com', '8cb2237d0679ca88db6464eac60da96345513964', NULL),
+(12, NULL, 'Pasien', 'jack', 'jack@mail.com', '596727c8a0ea4db3ba2ceceedccbacd3d7b371b8', NULL),
 (13, NULL, 'Pasien', 'will', 'will@mail.com', '8cb2237d0679ca88db6464eac60da96345513964', NULL),
 (14, NULL, 'Pasien', 'mary', 'mary@mail.com', '8cb2237d0679ca88db6464eac60da96345513964', NULL);
 
@@ -232,13 +229,13 @@ ALTER TABLE `data_pasien`
 -- AUTO_INCREMENT for table `dokter`
 --
 ALTER TABLE `dokter`
-  MODIFY `id_dokter` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_dokter` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `dokter_klinik`
 --
 ALTER TABLE `dokter_klinik`
-  MODIFY `id_dokter_klinik` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_dokter_klinik` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `klinik`
@@ -250,7 +247,7 @@ ALTER TABLE `klinik`
 -- AUTO_INCREMENT for table `reservasi`
 --
 ALTER TABLE `reservasi`
-  MODIFY `id_reservasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_reservasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `user`
